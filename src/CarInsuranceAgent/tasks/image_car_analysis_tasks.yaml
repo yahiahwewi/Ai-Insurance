@@ -1,0 +1,32 @@
+interpret_image_task:
+  description: >
+    Use the provided description at {{ image_description }} to identify the car's make, model, and year (if possible).
+    Include a quick note about the visible condition (e.g. clean, scratches, dented).
+  expected_output: >
+    A 1–2 sentence description like: "This looks like a 2018 Toyota Corolla in good condition."
+  agent: image_interpreter
+
+estimate_value_task:
+  description: >
+    Based on the car details from the previous task, estimate the current market value of the vehicle.
+    Consider condition, make, model, and year to give a price range.
+  expected_output: >
+    A value estimate like: "Estimated resale value: $10,000 – $12,500 based on visual condition."
+  agent: visual_valuator
+
+recommend_coverage_task:
+  description: >
+    Recommend the best type of insurance coverage for the vehicle, considering its estimated value and condition.
+    Mention if full coverage is advised or if liability-only is appropriate, and suggest optional add-ons.
+  expected_output: >
+    A suggestion like: "We recommend full coverage with comprehensive and collision. Consider gap insurance due to the vehicle’s value."
+  agent: coverage_recommender
+
+summarize_results_task:
+  description: >
+    Combine the results from image analysis, valuation, and coverage recommendation tasks.
+    Format a friendly summary message.
+  expected_output: >
+    Markdown, A short, readable summary combining all results: car identity, estimated value, and insurance recommendation using Markdown formatting (headings, bullet points, etc.) to present the information.
+  agent: response_summarizer
+  output_file: report.md

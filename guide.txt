@@ -1,0 +1,129 @@
+# 🤖 Car Insurance Assistant (Powered by CrewAI)
+
+## 🎯 Purpose
+
+This repository provides a **Car Insurance Assistant** that leverages **AI agents** through **CrewAI**, enabling users to perform tasks related to **car insurance and car valuation** using both text and image inputs.
+
+---
+
+## 🌟 Key Features
+
+### 🧮 Car Value Estimation
+- Input: Car details (make, model, year, condition).
+- Uses `CarValueEstimatorCrew` to estimate car value.
+
+### 🛡️ Insurance Question Answering
+- Input: Natural language questions.
+- Uses `InsuranceInfoResponderCrew` to answer insurance-related queries.
+
+### 🖼️ Image-Based Car Estimation
+- Input: Uploaded car image.
+- Uses `ImageCarAnalysisCrew` to analyze the image and provide value estimation.
+
+### 🧠 AI-Powered Agents
+- Modular agents for distinct tasks:
+  - `CarValueEstimatorCrew`
+  - `InsuranceInfoResponderCrew`
+  - `ImageCarAnalysisCrew`
+- Built using LLMs like **OpenAI** or **Meta LLaMA**.
+
+### 🖥️ Streamlit Interface
+- Intuitive UI to select tasks, input data, and view results.
+
+### 👁️ Vision Tool Integration
+- Includes a vision module (`describe_image`) to generate image-based descriptions and summaries.
+
+---
+
+## 🧠 Multi-Agent Architecture with CrewAI
+
+### 👥 Agents Overview
+
+| Agent Name                | Input Type        | Task                         | Output                             |
+|--------------------------|-------------------|------------------------------|------------------------------------|
+| CarValueEstimatorCrew    | Text (car details) | Car value estimation         | Estimated car value                |
+| InsuranceInfoResponderCrew | Text (questions)  | Insurance Q&A                | Answer to the question             |
+| ImageCarAnalysisCrew     | Image (uploaded)  | Image analysis & valuation   | Description and valuation summary  |
+
+---
+
+## 🗂️ agent.yaml – Agent Configuration
+
+Defines the configuration of each AI agent.
+
+```yaml
+agents:
+  - name: CarValueEstimatorCrew
+    model: meta-llama/llama-4-scout-17b-16e-instruct
+    task: car_value_estimation
+    dependencies: []
+
+  - name: InsuranceInfoResponderCrew
+    model: meta-llama/llama-4-scout-17b-16e-instruct
+    task: insurance_info_response
+    dependencies: []
+
+  - name: ImageCarAnalysisCrew
+    model: meta-llama/llama-4-scout-17b-16e-instruct
+    task: image_car_analysis
+    dependencies: [vision_tool]
+🧾 task.yaml – Task Definition
+Defines the tasks, their inputs, outputs, and agent mappings.
+
+Task Name: Unique task ID
+
+Input Type: Text or image
+
+Output Format: JSON, Markdown, etc.
+
+Agent Mapping: Links task to its agent
+
+🔁 Execution Flow
+User selects a task via the Streamlit app.
+
+The app refers to task.yaml to find the corresponding agent.
+
+CrewAI routes the input to the selected agent (from agent.yaml).
+
+Agent processes the input using its LLM and tools.
+
+Output is returned to the user or piped to another agent (optional chaining).
+
+🧩 How CrewAI Works
+CrewAI is a framework for coordinating multi-agent AI systems using natural language processing and structured task execution.
+
+🏗️ Core Concepts
+Agent: An AI persona with a role, tools, model, and goals.
+
+Task: A job an agent performs (e.g., answering a question, analyzing an image).
+
+Tool: External function (e.g., vision API, search tool) available to agents.
+
+⚙️ Key Features
+Declarative Setup: Agents and tasks are defined in YAML or Python.
+
+LLM Backends: Supports various LLMs (OpenAI, Anthropic, Meta, etc.).
+
+Routing & Chaining: Tasks are routed to the right agents, and their outputs can be chained.
+
+Autonomy: Agents can reason, plan, and collaborate depending on task design.
+
+🔄 CrewAI Workflow
+text
+Copy
+Edit
+User → selects task in UI
+    → task.yaml maps to agent
+        → agent.yaml defines agent behavior
+            → CrewAI routes input to agent
+                → LLM + tools generate response
+                    → Output displayed in app
+✅ Summary
+This repo uses CrewAI's multi-agent architecture to divide responsibilities among specialized AI agents:
+
+agent.yaml → Configures agents and models
+
+task.yaml → Maps tasks to agents with input/output formats
+
+Together, these enable a robust AI-driven assistant that works with text and images, providing real-time insights for car insurance and valuation tasks.
+

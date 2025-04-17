@@ -1,0 +1,35 @@
+classify_question_task:
+  description: >
+    Read the user's insurance-related question: {user_question}.
+    Expect natural, informal phrasing. Determine if it relates to coverage types, claims, policy differences, or legal/state requirements.
+    Do not process questions that are unrelated to insurance (e.g., cooking, tech, etc.).
+  expected_output: >
+    A short sentence like: "You're asking about coverage requirements in California."
+  agent: intent_classifier
+
+research_insurance_info_task:
+  description: >
+    Based on the user's insurance question and implied or stated location, find relevant, up-to-date info.
+    Focus only on automotive insurance. Ignore and do not respond to unrelated questions.
+    Use official and trusted insurance or government sources. Avoid jargon or legal complexity.
+  expected_output: >
+    A short bullet list or a 5–6 sentence summary of the most relevant, up-to-date info for the user’s insurance question.
+  agent: insurance_researcher
+
+explain_in_plain_language_task:
+  description: >
+    Take the research info and explain it in simple, everyday language.
+    Make sure it’s easy to understand and use a real-world example if it helps.
+    Don’t use legal or insurance jargon unless absolutely necessary.
+  expected_output: >
+    A clear, friendly explanation in a conversational tone. Avoid complexity.
+  agent: plain_language_explainer
+
+offer_next_steps_task:
+  description: >
+    Suggest useful next steps the user could take based on their insurance question (e.g. check policy, call insurer).
+    Provide links or point toward professional help if needed.
+    Don’t give irrelevant advice if the question wasn’t about insurance.
+  expected_output: >
+    A quick recommendation like: “You can contact your insurer to ask if your plan includes tire damage coverage.”
+  agent: next_step_advisor

@@ -1,0 +1,67 @@
+==============================
+✅ HOW TO RUN FASTAPI STEP-BY-STEP (GitHub Codespaces)
+==============================
+
+1. 📦 INSTALL DEPENDENCIES
+------------------------------
+Run this in the terminal:
+
+pip install -r req.txt
+
+
+2. ▶️ RUN FASTAPI SERVER
+------------------------------
+Use this command in the terminal:
+
+uvicorn fastapimain:app --host 0.0.0.0 --port 8000 --reload
+
+(main = your main Python filename, app = your FastAPI instance)
+
+
+3. 🌐 OPEN FASTAPI DOCS
+------------------------------
+Visit this URL in your browser:
+
+https://http://127.0.0.1:8000/
+
+
+4. 🧪 TEST EXAMPLE ENDPOINT
+------------------------------
+Click on `POST /estimate-car-value`
+
+- Click "Try it out"
+- Enter: Honda Civic 2020 Excellent
+- Click "Execute"
+- View the JSON result
+
+
+5. 💡 TIP: ROOT ENDPOINT
+------------------------------
+Make sure your fastapimain.py has this at minimum:
+
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+async def root():
+    return {"message": "Hello from FastAPI!"}
+
+
+6. ⚙️ OPTIONAL: RUN STREAMLIT
+------------------------------
+To run the Streamlit app:
+
+streamlit run main.py
+
+This will run on port 8501:
+
+
+
+7. 🛑 STOPPING
+------------------------------
+Press CTRL + C in the terminal to stop the server.
+
+==============================
+✅ YOU'RE READY TO BUILD!
+==============================

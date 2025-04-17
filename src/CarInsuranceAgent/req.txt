@@ -1,0 +1,10 @@
+streamlit
+crewai
+python-dotenv
+pysqlite3-binary
+google-genai
+crewai[tools]
+fastapi
+uvicorn
+python-multipart
+markdown

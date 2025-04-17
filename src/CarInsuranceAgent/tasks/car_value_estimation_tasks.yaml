@@ -1,0 +1,35 @@
+validate_input_task:
+  description: >
+    Read the user's car details input: {car_details}
+    Expect casual or semi-structured input like "Ford Mustang 2020 - Good condition, 50k mileage".
+    Parse out the key details: make, model, year, mileage, and condition.
+    If anything is unclear or missing, point it out in a friendly way — otherwise, work with what you've got.
+  expected_output: >
+    A quick validation summary: either "All good!" or a short, friendly list of items that need clarification.
+  agent: data_validator
+
+analyze_market_task:
+  description: >
+    Using the parsed vehicle details, look up typical market values for similar cars.
+    Include a price range and briefly explain any factors influencing it (like model popularity, year, or regional demand).
+  expected_output: >
+    A short summary like: "Cars like this typically sell for $22,000–$24,000 nationally, depending on trim and region."
+  agent: market_analyst
+
+adjust_for_condition_task:
+  description: >
+    Adjust the base market value based on the vehicle’s condition and mileage — as interpreted from natural language input.
+    Consider how phrases like "like new" or "good" and real-world mileage would impact price.
+    Note if anything adds or subtracts value.
+  expected_output: >
+    A short note like: "Good condition is standard, but 50k mileage may reduce value slightly by ~$500."
+  agent: condition_adjuster
+
+generate_valuation_report_task:
+  description: >
+    Combine everything into a clear valuation report.
+    Start with the parsed vehicle details and provide a final estimated price range.
+    Keep it concise but professional — explain how the price was reached using market data and condition insights.
+  expected_output: >
+    A brief valuation report including: vehicle description, estimated value range, and a rationale that combines market and condition analysis.
+  agent: final_synthesizer
